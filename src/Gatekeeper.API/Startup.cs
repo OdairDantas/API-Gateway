@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Polly;
 
 namespace Gatekeeper.API
 {
@@ -20,7 +21,7 @@ namespace Gatekeeper.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddOcelot();
+            services.AddOcelot().AddPolly();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

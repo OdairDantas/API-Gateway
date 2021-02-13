@@ -10,10 +10,28 @@
         }
       ],
       "UpstreamPathTemplate": "/email",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 3000
+      }
     }
   ],
   "GlobalConfiguration": {
-    "RequestIdKey": "X-Correlation-ID"
+    "RequestIdKey": "OcRequestId",
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "Cota de chamadas excedida!",
+      "DisableRateLimitHeaders": false,
+      "HttpStatusCode": 429
+    }
+
   }
 }
